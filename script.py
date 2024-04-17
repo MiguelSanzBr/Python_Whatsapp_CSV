@@ -5,27 +5,34 @@ from tkinter.filedialog import askopenfilename
 import pywhatkit as pwk
 import phonenumbers
 
+# NOMES DAS COLUNAS
+########################
+collMsg = 'menssage'
+colTel = 'phone' 
+######################
+
 def validNumber(phone):
     try:
-        parsed_number = phonenumbers.parse(phone)
-        return phonenumbers.is_valid_number(parsed_number) and parsed_number.country_code == 55
+        pNum = phonenumbers.parse(phone)
+        return phonenumbers.is_valid_number(pNum) and pNum.country_code == 55
     except phonenumbers.NumberParseException:
         return False
     
 def enviarmsg(phone, menssage):
     if validNumber('+55' + str(phone)):
-        pwk.sendwhatmsg_instantly('+55' + str(phone), menssage)
+        pwk.sendwhatmsg_instantly('+55' + str(phone), menssage,tap_close=True)
     else: 
         print("{phone} não é valido ")    
 
 
-def leercsv(archivo):
+def lercsv(archivo):
     df = pd.read_csv(archivo)
     columnas = df.columns.tolist()
-    if 'phone' in columnas and 'menssage' in columnas:
-        telefonos = df['phone'].tolist()
-        mensajes = df['menssage'].tolist()
-        for phone, menssage in zip(telefonos, mensajes):
+    if colTel in columnas and collMsg in columnas:
+        tell = df[colTel].tolist()
+        msg = df[collMsg].tolist()
+
+        for phone, menssage in zip(tell, msg):
             time.sleep(5)
             enviarmsg(phone, menssage)
             time.sleep(5)
@@ -38,6 +45,6 @@ Tk().withdraw()
 archivo_csv = askopenfilename(filetypes=[('Archivos CSV', '*.csv')])
 
 if archivo_csv:
-    leercsv(archivo_csv)
+    lercsv(archivo_csv)
 else:
     print("Nenhum arquivo foi selecionado.")
