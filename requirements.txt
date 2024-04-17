@@ -1,4 +1,4 @@
-Pandas == 2.0.2
+Pandas == 2.2.2
 pywhatkit == 5.4
-phonenumbers == 8.13
-keyboard == 0.13
+phonenumbers ==  8.13.34
+keyboard == 0.1
