@@ -4,11 +4,11 @@ from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 import pywhatkit as pwk
 import phonenumbers
+import random
 
 # NOMES DAS COLUNAS
 ########################
-collMsg = 'menssage'
-colTel = 'phone' 
+collMsg,colTel= 'menssage','phone' 
 ######################
 
 def validNumber(phone):
@@ -20,9 +20,16 @@ def validNumber(phone):
     
 def enviarmsg(phone, menssage):
     if validNumber('+55' + str(phone)):
-        pwk.sendwhatmsg_instantly('+55' + str(phone), menssage,tap_close=True)
+        pwk.sendwhatmsg_instantly('+55' + str(phone), menssage)
+        print(f"mensagem enviado a {phone}: {menssage}")
     else: 
-        print("{phone} não é valido ")    
+        now = time.localtime()
+        date = f"{now.tm_mday}/{now.tm_mon}/{now.tm_year}"
+        hora = f"{now.tm_hour}:{now.tm_min}"
+        with open('ERRO_NUMBER_DB.txt', 'a') as f:
+            f.write(f"{phone} \n")
+
+        print(phone,"não é valido")    
 
 
 def lercsv(archivo):
@@ -33,10 +40,10 @@ def lercsv(archivo):
         msg = df[collMsg].tolist()
 
         for phone, menssage in zip(tell, msg):
-            time.sleep(5)
+            time.sleep(random.randint(50,120))
             enviarmsg(phone, menssage)
-            time.sleep(5)
-            print(f"mensagem enviado a {phone}: {menssage}")
+            time.sleep(random.randint(50,120))
+            
     else:
         print("O arquivo CSV não possui as colunas 'telefone' e 'mensagem'.")
 

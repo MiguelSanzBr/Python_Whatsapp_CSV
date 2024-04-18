@@ -1,6 +1,7 @@
 #Backup 
 PyWhatKit_DB.txt
-
+ERRO_NUMBER_DB.txt
+test.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
