@@ -1,11 +1,11 @@
 import pandas as pd
-import time
-from tkinter import Tk
-from tkinter.filedialog import askopenfilename
 import pywhatkit as pwk
 import phonenumbers
 import random
 import pyautogui
+import time
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
 
 # NOMES DAS COLUNAS
 ########################

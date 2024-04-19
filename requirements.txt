@@ -1,5 +1,5 @@
 Pandas == 2.2.2
 pywhatkit == 5.4
 phonenumbers ==  8.13.34
-keyboard == 0.1
 pyautogui == 0.9.54
+random2 == 1.0.2
