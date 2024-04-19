@@ -5,10 +5,11 @@ from tkinter.filedialog import askopenfilename
 import pywhatkit as pwk
 import phonenumbers
 import random
+import pyautogui
 
 # NOMES DAS COLUNAS
 ########################
-collMsg,colTel= 'menssage','phone' 
+colMsg,colTel= 'menssage','phone' 
 ######################
 
 def validNumber(phone):
@@ -20,8 +21,12 @@ def validNumber(phone):
     
 def enviarmsg(phone, menssage):
     if validNumber('+55' + str(phone)):
+        #time.sleep(random.randint(50,120))
         pwk.sendwhatmsg_instantly('+55' + str(phone), menssage)
+        pyautogui.hotkey("ctrl", "w")
+        pyautogui.press("enter")
         print(f"mensagem enviado a {phone}: {menssage}")
+        #time.sleep(random.randint(50,120))
     else: 
         now = time.localtime()
         date = f"{now.tm_mday}/{now.tm_mon}/{now.tm_year}"
@@ -35,14 +40,13 @@ def enviarmsg(phone, menssage):
 def lercsv(archivo):
     df = pd.read_csv(archivo)
     columnas = df.columns.tolist()
-    if colTel in columnas and collMsg in columnas:
+    if colTel in columnas and colMsg in columnas:
         tell = df[colTel].tolist()
-        msg = df[collMsg].tolist()
+        msg = df[colMsg].tolist()
 
         for phone, menssage in zip(tell, msg):
-            time.sleep(random.randint(50,120))
             enviarmsg(phone, menssage)
-            time.sleep(random.randint(50,120))
+            
             
     else:
         print("O arquivo CSV não possui as colunas 'telefone' e 'mensagem'.")

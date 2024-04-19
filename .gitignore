@@ -2,6 +2,7 @@
 PyWhatKit_DB.txt
 ERRO_NUMBER_DB.txt
 test.py
+*.csv
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
