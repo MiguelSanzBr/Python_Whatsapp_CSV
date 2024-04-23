@@ -6,7 +6,6 @@ import pyautogui
 import time
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
-import sys
 
 # NOMES DAS COLUNAS
 ########################
