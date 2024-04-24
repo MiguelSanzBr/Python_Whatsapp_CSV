@@ -3,3 +3,5 @@ pywhatkit == 5.4
 phonenumbers ==  8.13.34
 pyautogui == 0.9.54
 random2 == 1.0.2
+selenium == 4.19.0
+webdriver-manager == 4.0.1
