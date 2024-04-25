@@ -13,6 +13,7 @@ from selenium.webdriver.chrome.service import Service
 # from selenium.webdriver.firefox.service import Service
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
+import webbrowser as web
 
 # NOMES DAS COLUNAS
 ########################
@@ -72,15 +73,19 @@ Tk().withdraw()
 archivo_csv = askopenfilename(filetypes=[('Archivos CSV', '*.csv')])
 
 if archivo_csv:
-    servico = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=servico)
-    
-    # FIRE FOX 
+    # servico = Service(ChromeDriverManager().install())
+    # driver = webdriver.Chrome(service=servico)
+ # FIRE FOX 
     # servico = Service(GeckoDriverManager().install())
-    # driver = webdriver.Firefox(service=servico)
-    
-    while not verifyLogin(driver):
-        pass
+    # driver = webdriver.Firefox(
+    # service=servico)
+ # Function Selenium   
+    # while not verifyLogin(driver):
+    #     pass
+    print("Verifique Se Esta Logado no WhatsappWeb,então precione Enter")
+    time.sleep(6)
+    web.open("https://web.whatsapp.com")
+    input()
     lercsv(archivo_csv)
 else:
     print("Nenhum arquivo foi selecionado.")
